@@ -1,42 +1,27 @@
-import { useEffect, useState } from 'react';
-import {messages} from './store/data'
+import Logo from './components/Logo';
+import Form from './components/Form';
+import Stats from './components/Stats';
+import PackingList from './components/PackingList';
+import { useState } from 'react';
 
 export default function App() { 
-  const [step, setStep] = useState(1)
-  const [isOpen , setIsOpen] = useState( true)
+  const [items, setItems] =  useState(
+      [
+        { id: 1, description: "Pants", packed: false, quantity: 3 },
+        { id: 2, description: "tt", packed: false, quantity: 2 },
+      ]
+    )
 
-  function incrementStep(){
-    step < 3 && setStep(s => s + 1);
-  }
-
-  function decrementStep(){
-    step > 1 && setStep(step - 1);
-  }
-
-
+    function addItemToList( item ){
+      setItems([...items, item])
+    }
+  
   return (
-    <>
-      <button  className='close' onClick={() => setIsOpen(is => !is)}>x</button>
-      { isOpen &&
-        <div className="steps">
-            <div className="numbers">
-                <div className={step>=1 ? 'active' : ''}>1</div>
-                <div className={step>=2 ? 'active' : ''}>2</div>
-                <div className={step>=3 ? 'active' : ''}>3</div>
-            </div>
-
-            <p className="message">Step {step}: {messages[step-1]}</p>
-
-            <p className="buttons">
-                <button className="active" onClick={decrementStep}>
-                    Previous
-                </button>
-                <button className="active" onClick={incrementStep}>
-                    Next
-                </button>
-            </p>
-        </div>
-      }
-    </>
+      <div className="app">
+          <Logo />
+          <Form addItem={addItemToList} />
+          <PackingList packageItems={items} />
+          <Stats />
+      </div>
   );
 }
