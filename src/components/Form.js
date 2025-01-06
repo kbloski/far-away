@@ -20,7 +20,7 @@ export default function Form( {addItem}) {
         setDescription('')
         setQuantity(1)
     }
-
+ 
     return (
         <form className="add-form" onSubmit={onSubmit}>
             <h3>What do you need for your trip?</h3>
