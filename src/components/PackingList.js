@@ -1,23 +1,25 @@
 import { useState } from "react";
 
-export default function PackingList({ items, deleteItem, onToggleItems }) {
-    const [ sortBy, setSortBy ] = useState('input')
+export default function PackingList({ items, deleteItem, onToggleItems, clearList }) {
+    const [sortBy, setSortBy] = useState("input");
 
     let sortedItems = [...items] ?? [];
 
-    if (sortBy === 'ipnut') sortedItems = items;
+    if (sortBy === "ipnut") sortedItems = items;
 
-    if (sortBy === 'description') sortedItems = items.slice().sort( (a, b) => {
-        return a.description.localeCompare(b.description)
-    })
-    
-    if (sortBy === 'packed') sortedItems = items.slice().sort( (a, b) => {
-        return Number(a.packed) - Number(b.packed)
-    });
+    if (sortBy === "description")
+        sortedItems = items.slice().sort((a, b) => {
+            return a.description.localeCompare(b.description);
+        });
+
+    if (sortBy === "packed")
+        sortedItems = items.slice().sort((a, b) => {
+            return Number(a.packed) - Number(b.packed);
+        });
 
     return (
         <div className="list">
-            <ul >
+            <ul>
                 {sortedItems.map((item, index) => (
                     <Item
                         key={index}
@@ -28,11 +30,15 @@ export default function PackingList({ items, deleteItem, onToggleItems }) {
                 ))}
             </ul>
             <div className="actions">
-                <select value={sortBy} onChange={e => setSortBy(e.target.value)}>
-                    <option value='input'>Sort by input order</option>
-                    <option value='description'>Sort by description</option>
-                    <option value='packed'>Sort by packed status</option>
+                <select
+                    value={sortBy}
+                    onChange={(e) => setSortBy(e.target.value)}
+                >
+                    <option value="input">Sort by input order</option>
+                    <option value="description">Sort by description</option>
+                    <option value="packed">Sort by packed status</option>
                 </select>
+                <button onClick={clearList}>Clear list</button>
             </div>
         </div>
     );
