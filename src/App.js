@@ -12,8 +12,6 @@ export default function App() {
       ]
     )
 
-    const [packedItems, setPackedItems] = useState([]);
-
 
     function handleToggleItem( id ){
       setItems( items => items.map( item => item.id === id ? { ...item, packed: !item.packed} : item))
