@@ -20,7 +20,7 @@ export default function App() {
     }
 
     function addItemToList( item ){
-      setItems(item => [...items, item])
+      setItems( items => [...items, item])
     }
   
     function deleteItemFromList(id){
@@ -32,7 +32,7 @@ export default function App() {
           <Logo />
           <Form addItem={addItemToList} />
           <PackingList packageItems={items} deleteItem={deleteItemFromList}  onToggleItems={handleToggleItem}/>
-          <Stats />
+          <Stats items={items}/>
       </div>
   );
 }
