@@ -8,9 +8,16 @@ export default function App() {
   const [items, setItems] =  useState(
       [
         { id: 1, description: "Pants", packed: false, quantity: 3 },
-        { id: 2, description: "tt", packed: false, quantity: 2 },
+        { id: 2, description: "tt", packed: true, quantity: 2 },
       ]
     )
+
+    const [packedItems, setPackedItems] = useState([]);
+
+
+    function handleToggleItem( id ){
+      setItems( items => items.map( item => item.id === id ? { ...item, packed: !item.packed} : item))
+    }
 
     function addItemToList( item ){
       setItems(item => [...items, item])
@@ -24,7 +31,7 @@ export default function App() {
       <div className="app">
           <Logo />
           <Form addItem={addItemToList} />
-          <PackingList packageItems={items} deleteItem={deleteItemFromList} />
+          <PackingList packageItems={items} deleteItem={deleteItemFromList}  onToggleItems={handleToggleItem}/>
           <Stats />
       </div>
   );

@@ -1,10 +1,15 @@
 // import Item from "./Item";
 
-export default function PackingList({ packageItems, deleteItem }) {
+export default function PackingList({ packageItems, deleteItem, onToggleItems }) {
     return (
         <ul className="list">
             {packageItems.map((item, index) => (
-                <Item key={index} {...item} deleteItem={deleteItem} />
+                <Item
+                    key={index}
+                    {...item}
+                    deleteItem={deleteItem}
+                    toggleItems={onToggleItems}
+                />
             ))}
         </ul>
     );
@@ -16,15 +21,20 @@ function Item( {
     description,
     packed,
     quantity,
-    deleteItem
+    deleteItem,
+    toggleItems
 }){
 
     function handleDelete(){
         deleteItem(id)
     }
 
+    function handleCheck(){
+        toggleItems( id )
+    }
+
     return <li>
-        <input type="checkbox"></input>
+        <input type="checkbox" checked={packed} onChange={handleCheck} />
         <span> { quantity } { description} </span>
         <button onClick={ handleDelete }>❌</button>
     </li>
