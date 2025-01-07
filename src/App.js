@@ -37,7 +37,7 @@ export default function App() {
             items={items} 
             deleteItem={deleteItemFromList}  
             onToggleItems={handleToggleItem}
-            clearList={clearList}
+            onClearList={clearList}
           />
           <Stats items={items}/>
       </div>
