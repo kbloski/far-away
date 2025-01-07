@@ -17,7 +17,7 @@ export default function App() {
     }
   
     function deleteItemFromList(id){
-      setItems( item => item.filter( i => i.id !== id))
+      setItems( items => items.filter( i => i.id !== id))
     }
 
   return (
