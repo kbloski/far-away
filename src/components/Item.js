@@ -2,12 +2,17 @@ export default function Item( {
     id,
     description,
     packed,
-    quantity
+    quantity,
+    deleteItem
 }){
+
+    function handleDelete(){
+        deleteItem(id)
+    }
 
     return <li>
         <input type="checkbox"></input>
         <span> { quantity } { description} </span>
-        <button>❌</button>
+        <button onClick={ handleDelete }>❌</button>
     </li>
 }

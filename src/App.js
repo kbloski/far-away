@@ -13,14 +13,18 @@ export default function App() {
     )
 
     function addItemToList( item ){
-      setItems([...items, item])
+      setItems(item => [...items, item])
     }
   
+    function deleteItemFromList(id){
+      setItems( item => item.filter( i => i.id !== id))
+    }
+
   return (
       <div className="app">
           <Logo />
           <Form addItem={addItemToList} />
-          <PackingList packageItems={items} />
+          <PackingList packageItems={items} deleteItem={deleteItemFromList} />
           <Stats />
       </div>
   );
